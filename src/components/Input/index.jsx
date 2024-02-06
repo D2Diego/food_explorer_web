@@ -1,0 +1,12 @@
+import { Container } from './styles';
+
+export function Input({ icon: Icon, ...rest }) {
+  return (
+    <Container>
+      <div>
+        {Icon && <Icon size={20} />}
+        <input {...rest} />
+      </div>
+    </Container>
+  );
+}
