@@ -3,7 +3,7 @@ import { HeaderMobile } from '../HeaderMobile'
 import { HeaderDesktop} from '../HeaderDesktop'
 
 
-export function HeaderWraper({ buttonText, icon: Icon, spanText }){
+export function HeaderWraper({ buttonText, icon: Icon, spanText, isAdmin }){
 
     const [ isMobile, setIsMobile ] = useState(window.innerWidth < 768);
 
@@ -26,7 +26,7 @@ export function HeaderWraper({ buttonText, icon: Icon, spanText }){
         <>
         {isMobile ? ( <HeaderMobile className="Mobile"/> )
         : (
-            <HeaderDesktop buttonText={buttonText} icon={Icon} className="Desktop" spanText={spanText}/>
+            <HeaderDesktop buttonText={buttonText} icon={Icon} className="Desktop" spanText={spanText} isAdmin={isAdmin}/>
         )}
         </>
     )

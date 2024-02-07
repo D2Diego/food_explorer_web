@@ -64,7 +64,7 @@ padding: 14px;
     i{
         color: ${({theme}) => theme.COLORS.BLUE_100};
         font-family: Roboto;
-        font-size: 16px;
+        font-size: 24px;
         font-style: normal;
         font-weight: 400;
         line-height: 100%;
@@ -105,5 +105,9 @@ padding: 14px;
 
 .custom-swiper.fade-out {
   opacity: 0.5;
+}
+
+.amount{
+    font-size: 20px;
 }
 `

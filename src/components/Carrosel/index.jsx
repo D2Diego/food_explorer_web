@@ -24,7 +24,7 @@ import 'swiper/css/scrollbar';
 
 register();
 
-export function Carrosel() {
+export function Carrosel({ buttonText, Icon }) {
 
   const [ slidePerView, setSlidePerView ] = useState(2)
 
@@ -67,14 +67,15 @@ export function Carrosel() {
       {data.map((item) => (
         <SwiperSlide key={item.id}>
         <div key={item.id} className='body'>
-      <FaHeart className='Like' />
+      <Icon className='Like' />
           <img src={item.img} alt={item.alt} className='img-teste' />
           <h3>{item.alt}</h3>
           <i>R$ 49,97</i>
           <p>
-            <FaMinus /> <span>01</span> <FaPlus />
+            <FaMinus className='amount' /> <span className='amount'>01</span> <FaPlus className='amount'/>
           </p>
-          <Button text='Incluir' />
+          {/* <Button text='Incluir' /> */}
+          {buttonText && <Button text={buttonText} />}
         </div>
         </SwiperSlide>
       ))}

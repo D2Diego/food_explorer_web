@@ -11,7 +11,7 @@ export const Container = styled.div`
     gap: 2.5rem;
     height: 6.5rem;
     width: auto;
-
+   padding: 15px;
     
 
 
@@ -24,6 +24,10 @@ export const Container = styled.div`
     justify-content: center;
     align-items: center;
     gap: 0.8rem;
+   }
+
+   .svg-logo{
+      margin-bottom: ${({ isAdmin }) => isAdmin ? '20px' : '0'};
    }
 
    h1{
@@ -54,6 +58,13 @@ export const Container = styled.div`
 }
 
 span{
-   color: red;
+   color: var(--Tints-Cake-200, #82F3FF);
+/* Roboto/Smallest regular */
+font-family: Roboto;
+font-size: 12px;
+font-style: normal;
+font-weight: 400;
+line-height: 160%;
+   margin-left: 105px;
 }
 `

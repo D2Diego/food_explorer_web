@@ -1,12 +1,13 @@
-import Flavors from "../../assets/Flavors.png"
-import FlavorsPlus from "../../assets/FlavorsPlus.png"
+import Flavors from "../../../assets/Flavors.png"
+import { FaEdit } from "react-icons/fa";
+import FlavorsPlus from "../../../assets/FlavorsPlus.png"
 
 import { Container, Box} from './styles';
 
-import { HeaderWraper } from '../../components/HeaderWraper'
-import { Footer } from '../../components/Footer'
+import { HeaderWraper } from '../../../components/HeaderWraper'
+import { Carrosel } from '../../../components/Carrosel'
+import { Footer } from '../../../components/Footer'
 
-import { Carrosel } from '../../components/Carrosel'
 
 
 export function HomeAdmin() {
@@ -22,11 +23,11 @@ export function HomeAdmin() {
            </div>
         </Box>
           <span className="title">Refeições</span>
-        <Carrosel/>
+        <Carrosel Icon={FaEdit} />
         <span className="title">Pratos Principais</span>
-        <Carrosel/>
+        <Carrosel Icon={FaEdit} />
         <span className="title">Pratos Principais</span>
-        <Carrosel/>
+        <Carrosel Icon={FaEdit} />
         <Footer/>
     </Container>
   );
