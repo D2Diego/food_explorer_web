@@ -1,6 +1,5 @@
 import Flavors from "../../assets/Flavors.png"
 import FlavorsPlus from "../../assets/FlavorsPlus.png"
-import { RiBillLine } from "react-icons/ri";
 
 import { Container, Box} from './styles';
 
@@ -10,14 +9,10 @@ import { Footer } from '../../components/Footer'
 import { Carrosel } from '../../components/Carrosel'
 
 
-
-
-export function Home() {
+export function HomeAdmin() {
   return (
     <Container>
-        <HeaderWraper buttonText="Novo Prato" icon={RiBillLine}/>
-
-
+        <HeaderWraper buttonText="Novo Prato" spanText="Admin" />
         <Box>
             <img src={Flavors} alt="Imagens de furtas caindo" className="flavors" />
             <img src={FlavorsPlus} alt="Imagens de furtas caindo" className="flavors-plus"/>
@@ -32,7 +27,6 @@ export function Home() {
         <Carrosel/>
         <span className="title">Pratos Principais</span>
         <Carrosel/>
-
         <Footer/>
     </Container>
   );

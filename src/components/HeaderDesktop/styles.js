@@ -12,7 +12,7 @@ export const Container = styled.div`
     height: 6.5rem;
     width: auto;
 
-    padding: 30px;
+    
 
 
     background-color: ${({theme}) => theme.COLORS.BLACK_600};
@@ -38,13 +38,22 @@ export const Container = styled.div`
     }
    }
    input{
-    width: 553px;
-    height: 48px;
+      height: 48px;
+      width: 553px;
+
+    @media (max-width: ${DEVICE_BREAKPOINTS.LG}) {
+    width: 283px;
+    }
+
    }
 
    .icon{
     width: 32px;
     height: 32px;
-    flex-shrink: 0;
-   }
+
+}
+
+span{
+   color: red;
+}
 `
