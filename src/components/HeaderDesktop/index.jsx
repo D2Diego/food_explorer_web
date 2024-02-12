@@ -8,12 +8,12 @@ import MyIcon from '../../assets/MyIcon.svg';
 import { Input } from '../Input';
 import { Button } from '../Button';
 
-export function HeaderDesktop({ icon: Icon, className, buttonText,spanText , isAdmin, ...rest }) {
+export function HeaderDesktop({ icon: Icon, className, buttonText,spanText , IsAdmin, ...rest }) {
   return (
-    <Container className={className} isAdmin={isAdmin}>
+    <Container className={className} $IsAdmin={IsAdmin}>
       <div className='logo'>
   
-        <img src={MyIcon} alt="Logo Food Explorer" className={`svg-logo ${isAdmin ? 'admin' : ''}`}/>
+        <img src={MyIcon} alt="Logo Food Explorer" className={`svg-logo ${IsAdmin ? 'admin' : ''}`} />
           
         <div>
           

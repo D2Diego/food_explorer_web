@@ -10,7 +10,7 @@ export const Container = styled.div`
     justify-content: center;
     gap: 2.5rem;
     height: 6.5rem;
-    width: auto;
+    width: 100%;
    padding: 15px;
     
 
@@ -27,8 +27,14 @@ export const Container = styled.div`
    }
 
    .svg-logo{
-      margin-bottom: ${({ isAdmin }) => isAdmin ? '20px' : '0'};
+  margin-bottom: 0;
    }
+
+   ${({ $IsAdmin }) => $IsAdmin && `
+   .svg-logo{
+      margin-bottom: 20px;
+   }
+   `}
 
    h1{
     font-family: Roboto;
@@ -59,12 +65,11 @@ export const Container = styled.div`
 
 span{
    color: var(--Tints-Cake-200, #82F3FF);
-/* Roboto/Smallest regular */
-font-family: Roboto;
-font-size: 12px;
-font-style: normal;
-font-weight: 400;
-line-height: 160%;
+   font-family: Roboto;
+   font-size: 12px;
+   font-style: normal;
+   font-weight: 400;
+   line-height: 160%;
    margin-left: 105px;
 }
 `
