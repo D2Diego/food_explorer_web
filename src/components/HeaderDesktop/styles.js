@@ -52,7 +52,7 @@ export const Container = styled.div`
       width: 553px;
 
     @media (max-width: ${DEVICE_BREAKPOINTS.LG}) {
-    width: 283px;
+      width: 283px;
     }
 
    }
@@ -67,9 +67,8 @@ span{
    color: var(--Tints-Cake-200, #82F3FF);
    font-family: Roboto;
    font-size: 12px;
-   font-style: normal;
    font-weight: 400;
-   line-height: 160%;
+   
    margin-left: 105px;
 }
 `

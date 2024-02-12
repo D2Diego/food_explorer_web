@@ -3,12 +3,13 @@ import { Container, FormSection, Label, Input, Select, TextArea } from './styles
 
 
 import { HeaderWraper } from '../../../components/HeaderWraper';
+import { NoteItem } from '../../../components/NoteItem'
 import { Button } from '../../../components/Button';
 import { Footer } from '../../../components/Footer';
 
 import { FaAngleLeft } from "react-icons/fa";
 
-export function NewFood() {
+export function EditFood() {
     return (
         <Container>
            
@@ -39,7 +40,7 @@ export function NewFood() {
                             </Label>
                         </div>
 
-                        <div className='second_line'>
+                       <div className='second_line'>
                             <Label className='label-ingrediente'>Ingredientes
                                 <div className="ingrediente_line">
                                    <NoteItem value="pão"/>
@@ -57,7 +58,10 @@ export function NewFood() {
                             <TextArea placeholder="Fale brevemente sobre o prato, seus ingredientes e composição" />
                         </Label>
 
-                    <Button text='Salvar alteração' className="teste"/>
+                    <div className='line_button'>
+                        <Button text='Excluir prato' className="teste"/>
+                        <Button text='Salvar alteração' className="teste"/>
+                    </div>
                 </FormSection>
             </main>
 

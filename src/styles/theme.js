@@ -3,7 +3,8 @@ export default {
      GRAY_900: "#121214",
      GRAY_800: "#202024",
      GRAY_700: "#3E3B47",
-     GRAY_600: "#5A595E",
+     GRAY_500: "#7C7C8A",
+     GRAY_600: "#76797B",
   
       WHITE: "#FFF",
 

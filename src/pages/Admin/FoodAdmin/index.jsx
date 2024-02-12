@@ -4,7 +4,7 @@ import  Prato  from '../../../assets/Prato.png'
 
 import { HeaderWraper } from '../../../components/HeaderWraper'
 import { Footer } from '../../../components/Footer'
-import { Tag}  from '../../../components/Tag'
+import { Tag }  from '../../../components/Tag'
 import { Button } from '../../../components/Button'
 
 import { FaPlus } from "react-icons/fa";
