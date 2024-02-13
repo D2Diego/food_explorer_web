@@ -38,7 +38,7 @@ export function SingUp(){
                 id="UserPassword"
                 />
 
-                <Button text="Criar conta"/>
+                <Button className="button-criar" text="Criar conta"/>
 
                 <a href="#">Ja tenho uma conta</a>
 

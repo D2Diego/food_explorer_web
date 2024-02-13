@@ -76,6 +76,10 @@ export const Container = styled.div`
         font-weight: 500;
     }
    }
-   }
+}
+
+.button-criar{
+    width: 100%;
+}
     
 `

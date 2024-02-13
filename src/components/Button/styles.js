@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Container = styled.div`
 button{
-    width: fit-content;
+    width: 100%;
     height: 3rem;
     padding: 0.75rem 2rem;
 

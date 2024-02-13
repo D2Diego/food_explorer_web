@@ -4,13 +4,13 @@ import { ThemeProvider } from 'styled-components'
 import theme from './styles/theme.js'
 import GlobalStyle from './styles/global'
 
-import  { EditFood }   from './pages/Admin/EditFood'
+import { Routes } from './routes/index.jsx'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
        <GlobalStyle/>
-          <EditFood/>
+          <Routes/>
     </ThemeProvider>
   </React.StrictMode>,
 )
