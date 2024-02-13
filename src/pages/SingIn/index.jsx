@@ -1,5 +1,7 @@
 import { Container } from "./styles"
 
+import { Link } from "react-router-dom"
+
 import MyIcon from "../../assets/MyIcon.svg"
 import { Input } from "../../components/Input"
 import { Button } from "../../components/Button"
@@ -33,7 +35,7 @@ export function SingIn(){
 
                 <Button text="Entrar"/>
 
-                <a href="#">Criar uma conta</a>
+                <Link to="/register"href="#">Criar uma conta</Link>
 
             </form>
         </Container>

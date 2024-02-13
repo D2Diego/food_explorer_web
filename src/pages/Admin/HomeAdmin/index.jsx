@@ -23,11 +23,11 @@ export function HomeAdmin() {
            </div>
         </Box>
           <span className="title">Refeições</span>
-        <Carrosel Icon={FaEdit} />
+        <Carrosel Icon={<FaEdit/>} />
         <span className="title">Pratos Principais</span>
-        <Carrosel Icon={FaEdit} />
+        <Carrosel Icon={<FaEdit/>} />
         <span className="title">Pratos Principais</span>
-        <Carrosel Icon={FaEdit} />
+        <Carrosel Icon={<FaEdit/>} />
         <Footer/>
     </Container>
   );

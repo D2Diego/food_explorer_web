@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom"
 import { DEVICE_BREAKPOINTS } from "../../styles/deviceBreakPoints";
 
 
@@ -92,7 +93,7 @@ padding: 14px;
         }
 }
 
-.img-teste{
+.img-food{
     width: 88px;
     height: 88px;
     object-fit: cover;
@@ -110,4 +111,10 @@ padding: 14px;
 .amount{
     font-size: 20px;
 }
+`
+
+export const ButtonIcon = styled(Link)`
+width: 24px;
+height: 24px;
+color:  var(--Light-Light-300, #E1E1E6);
 `

@@ -9,13 +9,13 @@ import { Footer } from '../../components/Footer'
 
 import { Carrosel } from '../../components/Carrosel'
 
-
+import { FaRegHeart } from "react-icons/fa";
 
 
 export function Home() {
   return (
     <Container>
-        <HeaderWraper buttonText="Novo Prato" icon={RiBillLine}/>
+        <HeaderWraper  icon={RiBillLine} buttonText="incluir (0)"/>
 
 
         <Box>
@@ -27,11 +27,11 @@ export function Home() {
            </div>
         </Box>
           <span className="title">Refeições</span>
-        <Carrosel/>
+        <Carrosel Icon={<FaRegHeart/>} buttonText='incluir' />
         <span className="title">Pratos Principais</span>
-        <Carrosel/>
+        <Carrosel Icon={<FaRegHeart/>} buttonText='incluir' />
         <span className="title">Pratos Principais</span>
-        <Carrosel/>
+        <Carrosel Icon={<FaRegHeart/>} buttonText='incluir' />
 
         <Footer/>
     </Container>

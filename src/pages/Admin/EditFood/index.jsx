@@ -9,6 +9,8 @@ import { Footer } from '../../../components/Footer';
 
 import { FaAngleLeft } from "react-icons/fa";
 
+import { Link } from "react-router-dom"
+
 export function EditFood() {
     return (
         <Container>
@@ -16,7 +18,7 @@ export function EditFood() {
             <HeaderWraper buttonText='Novo Prato' IsAdmin spanText='Admin'/>
 
             <main>
-                <a href="#"><FaAngleLeft /> Voltar</a>
+                <Link to='/foodAdmin/id'><FaAngleLeft /> Voltar</Link>
 
                 <FormSection>
                     
@@ -59,8 +61,8 @@ export function EditFood() {
                         </Label>
 
                     <div className='line_button'>
-                        <Button text='Excluir prato' className="teste"/>
-                        <Button text='Salvar alteração' className="teste"/>
+                        <Button to='/' text='Excluir prato' className="teste"/>
+                        <Button to='/' text='Salvar alteração' className="teste"/>
                     </div>
                 </FormSection>
             </main>

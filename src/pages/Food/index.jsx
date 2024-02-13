@@ -10,7 +10,7 @@ import { Button } from '../../components/Button'
 import { FaPlus } from "react-icons/fa";
 import { FaMinus } from "react-icons/fa";
 import { FaChevronLeft } from "react-icons/fa";
-
+import { Link } from "react-router-dom"
 
 
 
@@ -18,7 +18,7 @@ export function Food() {
   return (
     <Container>
         <HeaderWraper className="teste"/>
-          <a href="#"><FaChevronLeft /> Voltar</a>
+          <Link to='/'><FaChevronLeft /> Voltar</Link>
           <div className='box-mobile'>
               <img src={ Prato } alt="Foto do Prato" className='img-food' />
               <div className='box-text'>

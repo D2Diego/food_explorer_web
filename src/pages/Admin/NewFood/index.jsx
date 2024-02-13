@@ -3,10 +3,13 @@ import { Container, FormSection, Label, Input, Select, TextArea } from './styles
 
 
 import { HeaderWraper } from '../../../components/HeaderWraper';
+import { NoteItem } from '../../../components/NoteItem'
 import { Button } from '../../../components/Button';
 import { Footer } from '../../../components/Footer';
 
 import { FaAngleLeft } from "react-icons/fa";
+
+import { Link } from "react-router-dom"
 
 export function NewFood() {
     return (
@@ -15,7 +18,7 @@ export function NewFood() {
             <HeaderWraper buttonText='Novo Prato' IsAdmin spanText='Admin'/>
 
             <main>
-                <a href="#"><FaAngleLeft /> Voltar</a>
+                <Link to='/'><FaAngleLeft /> Voltar</Link>
 
                 <FormSection>
                     
@@ -57,7 +60,7 @@ export function NewFood() {
                             <TextArea placeholder="Fale brevemente sobre o prato, seus ingredientes e composição" />
                         </Label>
 
-                    <Button text='Salvar alteração' className="teste"/>
+                    <Button to='/' text='Salvar alteração' className="teste"/>
                 </FormSection>
             </main>
 

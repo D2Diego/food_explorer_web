@@ -11,14 +11,14 @@ import { FaPlus } from "react-icons/fa";
 import { FaMinus } from "react-icons/fa";
 import { FaChevronLeft } from "react-icons/fa";
 
-
+import { Link } from "react-router-dom"
 
 
 export function FoodAdmin() {
   return (
     <Container>
         <HeaderWraper className="teste" buttonText='Novo prato' spanText="Admin" isAdmin={true} />
-          <a href="#"><FaChevronLeft /> Voltar</a>
+          <Link to='/'><FaChevronLeft /> Voltar</Link>
           <div className='box-mobile'>
               <img src={ Prato } alt="Foto do Prato" className='img-food' />
               <div className='box-text'>
@@ -29,7 +29,7 @@ export function FoodAdmin() {
                 </div>
                 <div className='price'>
                 <p> <FaMinus className='icon' /> <span>01</span> <FaPlus className='icon' /></p>
-                <Button text='Editar prato' />
+                <Button to='/edit/:id' text='Editar prato' />
                 </div>
               </div>
           </div>

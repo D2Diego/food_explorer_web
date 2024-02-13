@@ -1,4 +1,4 @@
-import { Container } from './styles';
+import { Container, ButtonIcon } from './styles';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { register } from 'swiper/element/bundle';
 import { useState, useEffect } from 'react';
@@ -67,14 +67,15 @@ export function Carrosel({ buttonText, Icon }) {
       {data.map((item) => (
         <SwiperSlide key={item.id}>
         <div key={item.id} className='body'>
-      <Icon className='Like' />
-          <img src={item.img} alt={item.alt} className='img-teste' />
+        <ButtonIcon to='/edit/:id' className='Like'>
+              {Icon}
+        </ButtonIcon>
+          <img src={item.img} alt={item.alt} className='img-food' />
           <h3>{item.alt}</h3>
           <i>R$ 49,97</i>
           <p>
             <FaMinus className='amount' /> <span className='amount'>01</span> <FaPlus className='amount'/>
           </p>
-          {/* <Button text='Incluir' /> */}
           {buttonText && <Button text={buttonText} />}
         </div>
         </SwiperSlide>
