@@ -80,7 +80,7 @@ export const FormSection = styled.section`
   }
 
   .input_file{
-    border: 1px solid #ccc;
+   
   }
   
 `;

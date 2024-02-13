@@ -24,8 +24,8 @@ export function EditFood() {
 
                    <div>
                         <div className="first_line">
-                            <Label>Imagem do prato
-                                <Input type="file" className='input_file'/>
+                            <Label htmlFor='food' >Imagem do prato
+                                <Input id='food' type="file" className='input_file'/>
                             </Label>
 
                             <Label>Nome
