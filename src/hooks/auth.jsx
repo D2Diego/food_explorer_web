@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { api } from "../services/api"
 
 const AuthContext = createContext({});
@@ -12,6 +12,9 @@ function AuthProvider({children}){
             const response = await api.post("/sessions", { email, password });
             const { user, token } =  response.data;
 
+            localStorage.setItem("@ecommerce:user", JSON.stringify(user));
+            localStorage.setItem("@ecommerce:token", token);
+
             api.defaults.headers.authorizations = `Bearer ${token}`
             setData({ user, token})
 
@@ -24,6 +27,20 @@ function AuthProvider({children}){
             }
         }
     }
+
+    useEffect(() => {
+       const token = localStorage.getItem("@ecommerce:token");
+       const user =  localStorage.getItem("@ecommerce:user");
+
+        if(token && user){
+            api.defaults.headers.authorizations = `Bearer ${token}`;
+
+            setData({
+                token,
+                user: JSON.parse(user)
+            })
+        }
+    }, [])
 
     return(
         <AuthContext.Provider value={{ singIn, user: data.user }}>
