@@ -17,7 +17,7 @@ function AuthProvider({children}){
             localStorage.setItem("@ecommerce:user", JSON.stringify(user));
             localStorage.setItem("@ecommerce:token", token);
 
-            api.defaults.headers.authorization = `Bearer ${token}`
+            api.defaults.headers.common['authorization'] = `Bearer ${token}`
             setData({ user, token, isAdmin})
 
             console.log(user, token)
@@ -45,7 +45,7 @@ function AuthProvider({children}){
             const parsedUser = JSON.parse(user);
             const isAdmin = parsedUser.role === 'admin';
 
-            api.defaults.headers.authorization = `Bearer ${token}`
+            api.defaults.headers.common['authorization'] = `Bearer ${token}`
 
             setData({
                 token,
