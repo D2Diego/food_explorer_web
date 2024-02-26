@@ -2,12 +2,16 @@ import { Container } from "./styles"
 
 import { Link } from "react-router-dom"
 
+import { useAuth } from "../../hooks/auth"
+
 import MyIcon from "../../assets/MyIcon.svg"
 import { Input } from "../../components/Input"
 import { Button } from "../../components/Button"
 
 
 export function SingIn(){
+
+    const data = useAuth();
     return(
         <Container>
             <h1 className="nameLogo">

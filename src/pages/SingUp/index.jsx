@@ -63,7 +63,7 @@ export function SingUp(){
                 <label htmlFor="UserEmail">Email</label>
 
                 <Input
-                placeholder="No mínimo 6 caracteres"
+                placeholder="Exemplo@gmail.com"
                 id="UserEmail"
                 type="text"
                 onChange={e => setEmail(e.target.value)}
