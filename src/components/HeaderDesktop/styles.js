@@ -11,7 +11,7 @@ export const Container = styled.div`
     gap: 2.5rem;
     height: 6.5rem;
     width: 100%;
-   padding: 15px;
+    padding: 15px;
     
 
 
@@ -57,10 +57,12 @@ export const Container = styled.div`
 
    }
 
-   .icon{
-    width: 32px;
-    height: 32px;
-
+   .buttonIcon{
+    color: inherit;
+    border: none;
+    background: none;
+    font-size: 32px;
+    display: flex;
 }
 
 span{
