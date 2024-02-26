@@ -5,18 +5,20 @@ const AuthContext = createContext({});
 
 function AuthProvider({children}){
 
-    const [ data, setData] = useState({});
+    const [ data, setData] = useState({ user: null, token: null, isAdmin: false });
 
     async function singIn({ email, password }){
         try{
             const response = await api.post("/sessions", { email, password });
             const { user, token } =  response.data;
 
+            const isAdmin = user.role === 'admin'
+
             localStorage.setItem("@ecommerce:user", JSON.stringify(user));
             localStorage.setItem("@ecommerce:token", token);
 
-            api.defaults.headers.authorizations = `Bearer ${token}`
-            setData({ user, token})
+            api.defaults.headers.authorization = `Bearer ${token}`
+            setData({ user, token, isAdmin})
 
             console.log(user, token)
         } catch (error) {
@@ -32,7 +34,7 @@ function AuthProvider({children}){
         localStorage.removeItem("@ecommerce:token")
         localStorage.removeItem("@ecommerce:user")
 
-        setData({})
+        setData({ user: null, token: null, isAdmin: false })
     }
 
     useEffect(() => {
@@ -40,17 +42,21 @@ function AuthProvider({children}){
        const user =  localStorage.getItem("@ecommerce:user");
 
         if(token && user){
-            api.defaults.headers.authorizations = `Bearer ${token}`;
+            const parsedUser = JSON.parse(user);
+            const isAdmin = parsedUser.role === 'admin';
+
+            api.defaults.headers.authorization = `Bearer ${token}`
 
             setData({
                 token,
-                user: JSON.parse(user)
+                user: parsedUser,
+                isAdmin
             })
         }
     }, [])
 
     return(
-        <AuthContext.Provider value={{ singIn,signOut ,user: data.user }}>
+        <AuthContext.Provider value={{ singIn, signOut , ...data }}>
             {children}
         </AuthContext.Provider>
     )
