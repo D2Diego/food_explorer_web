@@ -30,6 +30,7 @@ export const Container = styled.div`
   margin-bottom: 0;
    }
 
+
    ${({ $IsAdmin }) => $IsAdmin && `
    .svg-logo{
       margin-bottom: 20px;

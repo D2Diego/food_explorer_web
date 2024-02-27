@@ -5,10 +5,8 @@ export const Container = styled.div`
     height: 100vh;
     position: relative;
     width: 100%;
-
     display: flex;
     flex-direction: column;
-    height: 100vh;
     justify-content: space-between;
 
     a{

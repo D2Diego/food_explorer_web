@@ -20,14 +20,12 @@ export function HeaderDesktop({ icon: Icon, className, buttonText,spanText , IsA
   
         <img src={MyIcon} alt="Logo Food Explorer" className={`svg-logo ${IsAdmin ? 'admin' : ''}`} />
           
-        <div>
-          
-            <h1>food explorer</h1>
-            {spanText && <span>{spanText}</span>}
+        <div className='text-teste'>
+            <h1>food explorer <br /> {spanText && <span>{spanText}</span>}</h1>
         </div>
-
-     
+            
       </div>
+
       <Input placeholder="Busque por pratos ou ingredientes"/>
       <Button text={ buttonText } icon={Icon} />
 
