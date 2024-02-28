@@ -62,8 +62,28 @@ export const FormSection = styled.section`
     align-content: center;
   }
 
+  .h1_fileLabel{
+    color: var(--Light-Light-300, #E1E1E6);
+font-family: Roboto;
+font-size: 16px;
+font-style: normal;
+font-weight: 400;
+line-height: 100%; 
+  }
+
   .input_file{
-   
+   display: none;
+  }
+
+  .label_file{
+  padding: 25px 25px;
+  width: 200px;
+  height: 3rem;
+  border-radius: 8px;
+  background: var(--Dark-Dark-800, #0D161B);
+  color: var(--Light-Light-100, #FFF);
+  display: flex;
+  align-items: center;
   }
   
 `;

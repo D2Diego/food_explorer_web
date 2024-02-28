@@ -28,9 +28,13 @@ export function EditFood() {
 
                    <div>
                         <div className="first_line">
-                            <Label htmlFor='food' >Imagem do prato
+                            
+                           <div>
+                            <h1 className='h1_fileLabel'>Imagem do prato</h1>
+                            <Label htmlFor='food' className='label_file' >Selecione a imagem
                                 <Input id='food' type="file" className='input_file'/>
                             </Label>
+                           </div>
 
                             <Label>Nome
                                 <Input type="text" placeholder="Ex: Salada Caesar" />
@@ -39,7 +43,6 @@ export function EditFood() {
                             <Label>Categoria
                                 <Select>
                                     <option>Refeição</option>
-                                    {/* Adicione mais opções de categoria aqui */}
                                 </Select>
                             </Label>
                         </div>

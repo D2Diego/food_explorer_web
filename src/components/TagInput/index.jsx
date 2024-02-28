@@ -15,7 +15,6 @@ const tagInput = () => {
         name="fruits"
         placeHolder="Digite aqui"
       />
-      {/* <em>press enter or comma to add new tag</em> */}
     </div>
   );
 };
