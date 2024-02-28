@@ -34,23 +34,6 @@ export const Container = styled.div`
     gap: 1rem;
   }
 
-  .ingrediente_line{
-    margin-top: 1rem;
-    height: 3rem;
-
-    display: flex;
-    flex-direction: row;
-    gap: 0.5rem;
-    border-radius: 8px;
-    background: var(--Dark-Dark-800, #0D161B);
-
-    display: flex;
-   
-    padding: 0 8px;
-    align-items: center;
-    gap: 1rem;
-    align-self: stretch;
-  }
 `;
 
 
@@ -148,35 +131,3 @@ export const TextArea = styled.textarea`
     border-color: #63B3ED;
   }
 `;
-
-// export const Button = styled.button`
-//   background-color: #E53E3E;
-//   border: none;
-//   border-radius: 0.375rem;
-//   padding: 0.75rem 1.5rem;
-//   color: #FFF;
-//   cursor: pointer;
-//   &:hover {
-//     background-color: #C53030;
-//   }
-
-//   &.voltar {
-//     background-color: transparent;
-//     color: #CBD5E0;
-//     padding: 0;
-//     margin-right: 2rem;
-//   }
-
-//   &.novo-prato {
-//     background-color: #4A5568;
-//     &:hover {
-//       background-color: #2C5282;
-//     }
-//   }
-
-//   &.salvar {
-//     display: block;
-//     width: 100%;
-//     margin-top: 1rem;
-//   }
-// `;

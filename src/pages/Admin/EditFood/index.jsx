@@ -3,13 +3,15 @@ import { Container, FormSection, Label, Input, Select, TextArea } from './styles
 
 
 import { HeaderWraper } from '../../../components/HeaderWraper';
-import { NoteItem } from '../../../components/NoteItem'
+
 import { Button } from '../../../components/Button';
 import { Footer } from '../../../components/Footer';
 
 import { FaAngleLeft } from "react-icons/fa";
 
 import { Link } from "react-router-dom"
+
+import  TagInput  from '../../../components/TagInput'
 
 export function EditFood() {
     return (
@@ -45,8 +47,7 @@ export function EditFood() {
                        <div className='second_line'>
                             <Label className='label-ingrediente'>Ingredientes
                                 <div className="ingrediente_line">
-                                   <NoteItem value="pão"/>
-                                   <NoteItem isNew placeholder="Novo igrediente"/>
+                                <TagInput/>
                                 </div>
                             </Label>
 
