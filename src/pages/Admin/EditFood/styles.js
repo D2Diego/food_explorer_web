@@ -64,11 +64,11 @@ export const FormSection = styled.section`
 
   .h1_fileLabel{
     color: var(--Light-Light-300, #E1E1E6);
-font-family: Roboto;
-font-size: 16px;
-font-style: normal;
-font-weight: 400;
-line-height: 100%; 
+    font-family: Roboto;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 100%; 
   }
 
   .input_file{
@@ -85,7 +85,6 @@ line-height: 100%;
   display: flex;
   align-items: center;
   }
-  
 `;
 
 export const Label = styled.label`
