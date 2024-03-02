@@ -1,102 +1,172 @@
+import {
+  Container,
+  FormSection,
+  Label,
+  Input,
+  Select,
+  TextArea,
+} from "./styles";
 
-import { Container, FormSection, Label, Input, Select, TextArea } from './styles';
-
-
-import { HeaderWraper } from '../../../components/HeaderWraper';
-import { Button } from '../../../components/Button';
-import { Footer } from '../../../components/Footer';
+import { HeaderWraper } from "../../../components/HeaderWraper";
+import { Button } from "../../../components/Button";
+import { Footer } from "../../../components/Footer";
 import { FaAngleLeft } from "react-icons/fa";
-import { Link } from "react-router-dom"
-import  TagInput  from '../../../components/TagInput'
+import { Link } from "react-router-dom";
+import TagInput from "../../../components/TagInput";
 
-import React, { useState, useContext } from 'react'
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { api } from "../../../services/api";
-import { useAuth } from '../../../hooks/auth';
+import { useAuth } from "../../../hooks/auth";
 
 export function NewFood() {
-    const [nome, setNome] = useState('');
-    const [categoria, setCategoria] = useState('Refeição');
-    const [ingredientes, setIngredientes] = useState([]);
-    const [preco, setPreco] = useState('');
-    const [descricao, setDescricao] = useState('');
-    const { token, isAdmin } = useAuth(); 
-    const navigate = useNavigate();
+  const [nome, setNome] = useState("");
+  const [categoria, setCategoria] = useState("");
+  const [categorias, setCategorias] = useState([]);
+  const [ingredientes, setIngredientes] = useState([]);
+  const [preco, setPreco] = useState("");
+  const [descricao, setDescricao] = useState("");
+  const { token, isAdmin } = useAuth();
+  const navigate = useNavigate();
 
+  const handleChangeNome = (e) => setNome(e.target.value);
+  const handleChangePreco = (e) => setPreco(e.target.value);
+  const handleChangeDescricao = (e) => setDescricao(e.target.value);
 
-
-    const handleSubmit = async (e) =>{
-        e.preventDefault();
-        if(!isAdmin){
-            return alert('Apenas administradores podem adicionar pratos.')
-        } try{
-            await api.post('/products', { nome, categoria, ingredientes, preco, descricao }, { headers: { 'Authorization': `Bearer ${token}` } });
-            alert('Prato criado com sucesso!')
-            navigate('/')
-        } catch (error){
-            alert('Erro ao criar prato');
-            console.error(error)
-        }
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!isAdmin) {
+      alert("Apenas administradores podem adicionar pratos.");
+      return;
     }
 
-    return (
-        <Container>
-            <HeaderWraper buttonText='Novo Prato' IsAdmin spanText='Admin'/>
+    const pratoData = {
+      nome,
+      categoria_id: categoria,
+      ingredientes,
+      preco,
+      descricao,
+    };
 
-            <main>
-                <Link to='/foodAdmin/id'><FaAngleLeft /> Voltar</Link>
+    try {
+      await api.post("/pratos", pratoData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      alert("Prato criado com sucesso!");
+      navigate("/");
+    } catch (error) {
+      console.error(error);
+      alert("Erro ao criar prato");
+    }
+  };
 
-                <FormSection>
-                    
-                        <h1>Adicionar prato</h1>
+  useEffect(() => {
+    const fetchCategorias = async () => {
+      try {
+        const response = await api.get("/categorias", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        setCategorias(response.data);
+      } catch (error) {
+        console.error("Erro ao buscar categorias", error);
+        alert("Erro ao buscar categorias");
+      }
+    };
 
-                   <div>
-                        <div className="first_line">
-                            
-                           <div>
-                            <h1 className='h1_fileLabel'>Imagem do prato</h1>
-                            <Label htmlFor='food' className='label_file' >Selecione a imagem
-                                <Input id='food' type="file" className='input_file'/>
-                            </Label>
-                           </div>
+    fetchCategorias();
+  }, [token]);
 
-                            <Label>Nome
-                                <Input type="text" placeholder="Ex: Salada Caesar" />
-                            </Label>
+  return (
+    <Container>
+      <HeaderWraper buttonText="Novo Prato" IsAdmin spanText="Admin" />
 
-                            <Label>Categoria
-                                <Select>
-                                    <option>Refeição</option>
-                                </Select>
-                            </Label>
-                        </div>
+      <main>
+        <Link to="/foodAdmin/id">
+          <FaAngleLeft /> Voltar
+        </Link>
 
-                       <div className='second_line'>
-                            <Label className='label-ingrediente'>Ingredientes
-                                <div className="ingrediente_line">
-                                <TagInput/>
-                                </div>
-                            </Label>
+        <FormSection onSubmit={handleSubmit}>
+          <h1>Adicionar prato</h1>
 
-                            <Label>Preço
-                                <Input type="text" placeholder="R$ 00,00" />
-                            </Label>
-                       </div>
-                    </div>
+          <div>
+            <div className="first_line">
+              <div>
+                <h1 className="h1_fileLabel">Imagem do prato</h1>
+                <Label htmlFor="food" className="label_file">
+                  {" "}
+                  Selecione a imagem
+                  <Input id="food" type="file" className="input_file" />
+                </Label>
+              </div>
 
-                    <Label>Descrição
-                            <TextArea placeholder="Fale brevemente sobre o prato, seus ingredientes e composição" />
-                        </Label>
+              <Label>
+                Nome
+                <Input
+                  type="text"
+                  placeholder="Ex: Salada Caesar"
+                  onChange={handleChangeNome}
+                />
+              </Label>
 
-                    <div className='line_button'>
-                        <Button to='/' text='Excluir prato' className="teste"/>
-                        <Button to='/' text='Salvar alteração' className="teste"/>
-                    </div>
-                </FormSection>
-            </main>
+              <Label>
+                Categoria
+                <Select
+                  value={categoria}
+                  onChange={(e) => setCategoria(e.target.value)}
+                >
+                  {categorias.map((categoria) => (
+                    <option key={categoria.id} value={categoria.id}>
+                      {categoria.nome}
+                    </option>
+                  ))}
+                </Select>
+              </Label>
+            </div>
 
-            <Footer className="Footer"/>
-        </Container>
-    );
+            <div className="second_line">
+              <Label className="label-ingrediente">
+                Ingredientes
+                <div className="ingrediente_line">
+                  <TagInput
+                    selected={ingredientes}
+                    setSelected={setIngredientes}
+                    name="ingredientes"
+                    placeHolder="Digite os ingredientes"
+                  />
+                </div>
+              </Label>
+
+              <Label>
+                Preço
+                <Input
+                  type="text"
+                  placeholder="R$ 00,00"
+                  onChange={handleChangePreco}
+                />
+              </Label>
+            </div>
+          </div>
+
+          <Label>
+            Descrição
+            <TextArea
+              value={descricao}
+              onChange={handleChangeDescricao}
+              placeholder="Fale brevemente sobre o prato, seus ingredientes e composição"
+            />
+          </Label>
+
+          <div className="line_button">
+            <Button type="submit" text="Salvar prato" className="teste" />
+          </div>
+        </FormSection>
+      </main>
+
+      <Footer className="Footer" />
+    </Container>
+  );
 }
-

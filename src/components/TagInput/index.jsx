@@ -3,8 +3,7 @@ import { TagsInput } from "react-tag-input-component";
 
 import './styles.css'
 
-const tagInput = () => {
-  const [selected, setSelected] = useState([]);
+const TagInput = ({ selected, setSelected, name, placeHolder }) => {
 
   return (
     <div>
@@ -12,11 +11,11 @@ const tagInput = () => {
       <TagsInput
         value={selected}
         onChange={setSelected}
-        name="fruits"
-        placeHolder="Digite aqui"
+        name={name}
+        placeHolder={placeHolder}
       />
     </div>
   );
 };
 
-export default tagInput;
+export default TagInput;

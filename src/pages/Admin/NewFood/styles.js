@@ -37,7 +37,7 @@ export const Container = styled.div`
 `;
 
 
-export const FormSection = styled.section`
+export const FormSection = styled.form`
   border-radius: 0.375rem;
   margin: 2rem 0;
   padding: 2rem;
