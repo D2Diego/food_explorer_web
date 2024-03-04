@@ -1,13 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import { TagsInput } from "react-tag-input-component";
-
-import './styles.css'
+import "./styles.css";
 
 const TagInput = ({ selected, setSelected, name, placeHolder }) => {
-
   return (
     <div>
-      <h1></h1>
       <TagsInput
         value={selected}
         onChange={setSelected}

@@ -6,16 +6,14 @@ import {
   Select,
   TextArea,
 } from "./styles";
-
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { FaAngleLeft } from "react-icons/fa";
 import { HeaderWraper } from "../../../components/HeaderWraper";
 import { Button } from "../../../components/Button";
 import { Footer } from "../../../components/Footer";
-import { FaAngleLeft } from "react-icons/fa";
-import { Link } from "react-router-dom";
 import TagInput from "../../../components/TagInput";
-
-import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import { api } from "../../../services/api";
 import { useAuth } from "../../../hooks/auth";
 
@@ -29,6 +27,22 @@ export function NewFood() {
   const { token, isAdmin } = useAuth();
   const navigate = useNavigate();
 
+  useEffect(() => {
+    const fetchCategorias = async () => {
+      try {
+        const response = await api.get("/categorias", {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        setCategorias(response.data);
+      } catch (error) {
+        console.error("Erro ao buscar categorias", error);
+        alert("Erro ao buscar categorias");
+      }
+    };
+
+    fetchCategorias();
+  }, [token]);
+
   const handleChangeNome = (e) => setNome(e.target.value);
   const handleChangePreco = (e) => setPreco(e.target.value);
   const handleChangeDescricao = (e) => setDescricao(e.target.value);
@@ -40,45 +54,55 @@ export function NewFood() {
       return;
     }
 
-    const pratoData = {
-      nome,
-      categoria_id: categoria,
-      ingredientes,
-      preco,
-      descricao,
-    };
+    const pratoData = new FormData();
+    pratoData.append("nome", nome);
+    pratoData.append("categoria_id", categoria);
+    pratoData.append("preco", preco);
+    pratoData.append("descricao", descricao);
+
+    const fileInput = document.querySelector("#food");
+    if (fileInput.files[0]) {
+      pratoData.append("path_image", fileInput.files[0]);
+    }
 
     try {
-      await api.post("/pratos", pratoData, {
+      const pratoResponse = await api.post("/pratos", pratoData, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
-      alert("Prato criado com sucesso!");
+
+      if (ingredientes.length > 0) {
+        await api.post(
+          "/ingredientes",
+          { nomes: ingredientes },
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          }
+        );
+      }
+
+      const ingredientesIds = ingredientesResponse.data.ingredientes.map(
+        (ing) => ing.id
+      );
+      await api.post(
+        `/prato_ingredientes`,
+        {
+          prato_id: pratoResponse.data.id,
+          ingrediente_ids: ingredientesIds,
+        },
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+
+      alert("Prato e ingredientes criados com sucesso!");
       navigate("/");
     } catch (error) {
       console.error(error);
-      alert("Erro ao criar prato");
+      alert("Erro ao criar prato e/ou ingredientes.");
     }
   };
-
-  useEffect(() => {
-    const fetchCategorias = async () => {
-      try {
-        const response = await api.get("/categorias", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        setCategorias(response.data);
-      } catch (error) {
-        console.error("Erro ao buscar categorias", error);
-        alert("Erro ao buscar categorias");
-      }
-    };
-
-    fetchCategorias();
-  }, [token]);
 
   return (
     <Container>
@@ -97,7 +121,6 @@ export function NewFood() {
               <div>
                 <h1 className="h1_fileLabel">Imagem do prato</h1>
                 <Label htmlFor="food" className="label_file">
-                  {" "}
                   Selecione a imagem
                   <Input id="food" type="file" className="input_file" />
                 </Label>
