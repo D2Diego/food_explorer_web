@@ -1,115 +1,148 @@
 import styled from "styled-components";
-import { DEVICE_BREAKPOINTS } from "../../styles/deviceBreakPoints";
-
 
 export const Container = styled.div`
-width: 100%;
-height: 100vh;
-padding: 0;
-margin: 0;
-
-
-.title{
-font-family: Poppins;
-font-size: 18px;
-margin-left: 24px;
-}
-`
-
-export const Box = styled.div`
-    margin: 2.75rem auto 3.8rem auto;
-    width: 23.5rem;
-    height: 7.5rem;
-    background: var(--Gradients-200, linear-gradient(180deg, #091E26 0%, #00131C 100%));
-
     display: flex;
-    position: relative;
+    flex-direction: column;
+    
+    width: 100%;
+    min-width: 35rem;
+    height: 100vh;
+    
+    overflow: auto;
+    overflow: overlay; 
+`;
 
-    @media (min-width: ${DEVICE_BREAKPOINTS.MD}) {
-        width: 40rem;
-        height: 9rem;
-        margin-top: 3.5rem;
+export const Content = styled.div`
+    display: flex;
+    flex-direction: column;
+    
+    width: 100%;
+    max-width: 121.2rem;
+    margin: auto;
+    padding: 3.5rem 4rem;
+
+    font-family: 'Poppins', sans-serif;
+
+    .swiper {
+        margin-bottom: 6rem;
     }
 
-    @media (min-width: ${DEVICE_BREAKPOINTS.LG}) {
-        width: 65rem;
-        height: 16rem;
-        margin-top: 10.5rem ;
+    p {
+        font-size: 3.2rem;
+        margin-bottom: 3rem;
     }
-
-    .flavors-plus{
-        display: none;
-
-        @media (min-width: ${DEVICE_BREAKPOINTS.LG}) {
-        display: block;
-        position: absolute;
-        bottom: 0px;
-        left: -60px;
+    
+    .swiper-slide {
+        /* Center slide text vertically */
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        -webkit-justify-content: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        -webkit-align-items: center;
+        align-items: center;
     }
-    }
-    .flavors{
-        display: block;
-        position: absolute;
-        bottom: 0px;
-        left: -25px;
-   
-        @media (min-width: ${DEVICE_BREAKPOINTS.MD}) {
-        width: 13rem;
-        height: 13rem;
-        object-fit: cover;
-    }
+    
+    .swiper-button-next,
+    .swiper-button-prev {
+        width: 9rem;
+        height: 51.2rem;
+        margin: -25.6rem -1rem;
         
-        @media (min-width: ${DEVICE_BREAKPOINTS.LG}) {
-       display: none;
-    }
-   
-
+        color: ${({ theme }) => theme.COLORS.BLUE};
+        font-weight: bolder;
+        mask-image: none;
     }
 
-    .textStart{
-        margin-left: 9.9rem;
-        margin-top: 2rem;
-
-        @media (min-width: ${DEVICE_BREAKPOINTS.MD}) {
-            margin-left: 13.9rem;
-            margin-top: 2.5rem;
+    .swiper-button-next:hover,
+    .swiper-button-prev:hover {
+	    animation: scale-up-center 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
     }
 
-        @media (min-width: ${DEVICE_BREAKPOINTS.LG}) {
-            margin-left: 37rem;
-            margin-top: 5.5rem;
-    }
- }
-    h2 {
-        color: var(--Light-Light-300, #E1E1E6);
-        font-family: Poppins;
-        font-size: 18px;
-
-        @media (min-width: ${DEVICE_BREAKPOINTS.MD}) {
-            font-size: 1.5rem
+    .swiper-button-prev {
+        background: linear-gradient(to left, transparent 0%, ${({ theme }) => theme.COLORS.BACKGROUND_900} 100% 0%, transparent 100%);
     }
 
-        @media (min-width: ${DEVICE_BREAKPOINTS.LG}) {  
-            font-size: 2.5rem
-    }
-    }
-    
-   
-
-    span{
-        color: var(--Light-Light-300, #E1E1E6);
-        font-family: Poppins;
-        font-size: 12px;
-
-        @media (min-width: ${DEVICE_BREAKPOINTS.MD}) {
-            font-size: 0.8rem
+    .swiper-button-next {
+        background: linear-gradient(to right, transparent 0%, ${({ theme }) => theme.COLORS.BACKGROUND_900} 100% 0%, transparent 100%);
     }
 
-        @media (min-width: ${DEVICE_BREAKPOINTS.LG}) {  
-            font-size: 1rem
+    @keyframes scale-up-center {
+        0% {
+            transform: scale(1);
+        }
+        100% {
+            transform: scale(1.2);
+        }
     }
-}
+`;
 
-  
-    
-`
+export const Banner = styled.div`
+    text-align: center;
+    justify-content: space-between;
+    font-family: 'Poppins', sans-serif;
+
+    margin-bottom: 6.2rem;
+
+    .banner {
+        background: linear-gradient(180deg, ${({ theme }) => theme.COLORS.BLUE_400} 0%, ${({ theme }) => theme.COLORS.BLUE_500} 100%);
+        border-radius: 0.8rem;
+        position: relative;
+        -webkit-box-shadow: 0px 0px 10px 5px #193746; 
+        box-shadow: 0px 0px 10px 5px #193746;
+    }
+
+    .title {
+        padding: 1rem;
+    }
+
+    img {
+        width: 100%;
+        margin-bottom: -2.7rem;
+        z-index: -1;
+    }
+
+    h1 {
+        line-height: 140%;
+        font-size: clamp(1rem, 6vw, 4rem);
+        font-weight: 500;
+
+        margin-bottom: 0.8rem;
+    }
+
+    span {
+        font-size: clamp(1rem, 2.5vw, 1.6rem);
+    }
+
+    @media only screen and (min-width: 1060px) {
+        position: relative;
+        margin-top: 16.4rem;
+
+        .banner {
+            display: flex;
+            justify-content: end;
+        }
+        
+        .title {
+            width: 54rem;
+            height: 26rem;
+
+            padding: 8.7rem 4.6rem 0 0;
+
+            text-align: right;
+        }
+
+        img {
+            width: 65.6rem;
+            position: absolute;
+            bottom: 1.3rem;
+            z-index: 1;
+            left: -5rem;
+        }
+    }
+`;

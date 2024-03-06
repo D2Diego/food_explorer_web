@@ -1,71 +1,109 @@
-import { createContext, useContext, useEffect, useState } from "react";
-import { api } from "../services/api"
+import { createContext, useContext, useState, useEffect } from 'react';
 
-const AuthContext = createContext({});
+import { api } from '../services/api';
 
-function AuthProvider({children}){
+export const AuthContext = createContext({});
 
-    const [ data, setData] = useState({ user: null, token: null, isAdmin: false });
+function AuthProvider({ children }) {
+    const [data, setData] = useState({});
+    const [loading, setLoading] = useState(false);
 
-    async function singIn({ email, password }){
-        try{
+    async function signIn({ email, password }) {
+
+        try {
+            setLoading(true);
             const response = await api.post("/sessions", { email, password });
-            const { user, token } =  response.data;
+            const { user, token } = response.data;
 
-            const isAdmin = user.role === 'admin'
+            localStorage.setItem("@foodexplorer:user", JSON.stringify(user));
+            localStorage.setItem("@foodexplorer:token", token);
+            
+            api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+            setData({ user, token });
 
-            localStorage.setItem("@ecommerce:user", JSON.stringify(user));
-            localStorage.setItem("@ecommerce:token", token);
+            setLoading(false);
 
-            api.defaults.headers.common['authorization'] = `Bearer ${token}`
-            setData({ user, token, isAdmin})
-
-            console.log(user, token)
         } catch (error) {
-            if(error.response){
-                alert(error.response.data.message)
+            if (error.response) {
+                alert(error.response.data.message);
             } else {
-                alert("Não foi possível entrar")
+                alert("Não foi possível entrar.");
             }
+
+            setLoading(false);
         }
     }
 
     function signOut(){
-        localStorage.removeItem("@ecommerce:token")
-        localStorage.removeItem("@ecommerce:user")
+        localStorage.removeItem("@foodexplorer:token");
+        localStorage.removeItem("@foodexplorer:user");
 
-        setData({ user: null, token: null, isAdmin: false })
+        setData({});
+    }
+
+    async function updateProfile({ user, avatarFile }){
+        try {
+
+            if (avatarFile){
+                setLoading(true);
+                const fileUploadForm = new FormData();
+                fileUploadForm.append("avatar", avatarFile);
+
+                const response = await api.patch("/users/avatar", fileUploadForm);
+                user.avatar = response.data.avatar;
+            }
+
+            await api.put("/users", user);
+            localStorage.setItem("@foodexplorer:user", JSON.stringify(user));
+
+            setData({ user, token: data.token });
+            alert("Perfil atualizado com sucesso!");
+
+            setLoading(false);
+
+        } catch (error) {
+            if (error.response) {
+                alert(error.response.data.message);
+            } else {
+                alert("Não foi possível atualizar o perfil.");
+            }
+
+            setLoading(false);
+        }
     }
 
     useEffect(() => {
-       const token = localStorage.getItem("@ecommerce:token");
-       const user =  localStorage.getItem("@ecommerce:user");
+        const token = localStorage.getItem("@foodexplorer:token");
+        const user = localStorage.getItem("@foodexplorer:user");
 
-        if(token && user){
-            const parsedUser = JSON.parse(user);
-            const isAdmin = parsedUser.role === 'admin';
-
-            api.defaults.headers.common['authorization'] = `Bearer ${token}`
+        if (token && user) {
+            api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
             setData({
                 token,
-                user: parsedUser,
-                isAdmin
-            })
+                user: JSON.parse(user)
+            });
         }
-    }, [])
+    }, []);
 
-    return(
-        <AuthContext.Provider value={{ singIn, signOut , ...data }}>
+    return (
+        <AuthContext.Provider value={{ 
+            signIn,
+            signOut,
+            loading,
+            setLoading,
+            updateProfile,
+            user: data.user,
+        }}>
             {children}
         </AuthContext.Provider>
     )
 }
 
-function useAuth(){
+function useAuth() {
     const context = useContext(AuthContext);
 
     return context;
 }
 
-export { AuthProvider, useAuth } 
+export { AuthProvider, useAuth };

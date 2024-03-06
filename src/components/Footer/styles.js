@@ -1,51 +1,48 @@
 import styled from "styled-components";
-import { DEVICE_BREAKPOINTS } from "../../styles/deviceBreakPoints";
 
-export const Container = styled.div`
-    width: auto;
-    height: 77px;
-    padding: 1.5rem 5rem;
-    background: var(--Dark-Dark-600, #00111A);
+export const Container = styled.footer`
+    width: 100%;
+    height: 7.7rem;
     
-    @media (max-width: ${DEVICE_BREAKPOINTS.SM}) {
-        padding: 1.5rem 3rem
-            }
-   
-   
-        
+    background-color: ${({ theme }) => theme.COLORS.BACKGROUND_600};
+    align-items: center;
+`;
 
-    .Line{
+export const Content = styled.div`
         display: flex;
-        align-items: center;
         justify-content: space-between;
+        align-items: center;
+
+        max-width: 121.2rem;
+        padding: 0 4rem;
+        margin: auto;
+
+        color: ${({ theme }) => theme.COLORS.GRAY_300};
+
+        > p {
+            font-size: 1.4rem;
+            font-family: 'DM Sans', sans-serif;
+            text-align: right;
+        }
+`;
+
+export const Logo = styled.div`
+    .logo {
+        display: flex;
+        
+        height: 7.7rem;
+        gap: 1.123rem;
+
+        align-items: center;
+        white-space: nowrap;
+
+        color: ${({ theme }) => theme.COLORS.GRAY_300};
     }
 
-h1{
-    color: var(--Light-Light-700, #4D585E);
-
-    font-family: Roboto;
-    font-size: 24px;
-    font-weight: 700;
-
-    display: flex;
-    gap: 0.8rem;
-    align-items: center;
-    white-space: nowrap;
-
-    @media (max-width: ${DEVICE_BREAKPOINTS.MD}) {
-        font-size: 14px;
-            }
-}
-
-span{
-    color: var(--Light-Light-200, #FFFAF1);
-    font-family: Roboto;
-    font-size: 14px;
-    font-weight: 400;
-    white-space: nowrap;
-
-    @media (max-width: ${DEVICE_BREAKPOINTS.SM}) {
-        font-size: 11px;
-            }
-}
-`
+    span {
+        font-family: 'Roboto', sans-serif;
+        font-size: 2.51109rem;
+        font-weight: 700;
+        flex-wrap: wrap;
+    }
+`;

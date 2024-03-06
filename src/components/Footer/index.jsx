@@ -1,14 +1,22 @@
-import { Container } from './styles';
-import  MyIconGrey  from '../../assets/MyIconGrey.svg'
+import { Container, Content, Logo } from "./styles";
+import logo_gray from '../../assets/logo_gray.svg'
 
+export function Footer() {
+    return (
+        <Container>
+            <Content>
+                <Logo>
+                    <div className="logo">    
+                        <img src={logo_gray} alt="" />
+                        <span>food explorer</span>
+                    </div>
+                </Logo>
 
-export function Footer({className}) {
-  return (
-    <Container className={className}>
-      <div className='Line'>
-        <h1> <img src={ MyIconGrey } alt="Logo" /> Food Explorer</h1>
-        <span>© 2023 - Todos os direitos reservados.</span>
-      </div>
-    </Container>
-  );
+                <p>
+                    © 2022 - Todos os direitos reservados.
+                </p>
+
+            </Content>
+        </Container>
+    );
 }

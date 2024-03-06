@@ -1,22 +1,13 @@
-import { Container } from './styles';
+import { Container } from "./styles";
 
-import { useNavigate } from 'react-router-dom';
-
-export function Button({ text, icon: Icon, to, className, ...rest }) {
-  const navigate = useNavigate();
-
-  const handleClick = () => {
-    if (to) {
-      navigate(to);
-    }
-  };
-
-  return (
-    <Container className={className}>
-      <button {...rest} onClick={handleClick}>
-        {Icon && <Icon />}
-        {text}
-      </button>
-    </Container>
-  );
+export function Button({ icon: Icon, title, ...rest }) {
+    return (
+        <Container
+        type="button"
+        {...rest}
+        >
+            {Icon && <Icon size={21} />}
+            {title}
+        </Container>
+    );
 }
