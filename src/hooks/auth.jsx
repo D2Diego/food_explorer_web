@@ -1,109 +1,96 @@
-import { createContext, useContext, useState, useEffect } from 'react';
-
-import { api } from '../services/api';
+import { createContext, useContext, useState, useEffect } from "react";
+import { api } from "../services/api";
 
 export const AuthContext = createContext({});
 
 function AuthProvider({ children }) {
-    const [data, setData] = useState({});
-    const [loading, setLoading] = useState(false);
+  const [data, setData] = useState({});
+  const [loading, setLoading] = useState(false);
 
-    async function signIn({ email, password }) {
+  const updateApiHeaders = (token) => {
+    api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+  };
 
-        try {
-            setLoading(true);
-            const response = await api.post("/sessions", { email, password });
-            const { user, token } = response.data;
-
-            localStorage.setItem("@foodexplorer:user", JSON.stringify(user));
-            localStorage.setItem("@foodexplorer:token", token);
-            
-            api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-            setData({ user, token });
-
-            setLoading(false);
-
-        } catch (error) {
-            if (error.response) {
-                alert(error.response.data.message);
-            } else {
-                alert("Não foi possível entrar.");
-            }
-
-            setLoading(false);
-        }
+  const executeLoading = async (action) => {
+    try {
+      setLoading(true);
+      await action();
+    } catch (error) {
+      alert(
+        error.response
+          ? error.response.data.message
+          : "Não foi possível completar a operação."
+      );
+    } finally {
+      setLoading(false);
     }
+  };
 
-    function signOut(){
-        localStorage.removeItem("@foodexplorer:token");
-        localStorage.removeItem("@foodexplorer:user");
+  const signIn = ({ email, password }) =>
+    executeLoading(async () => {
+      const response = await api.post("/sessions", { email, password });
+      const { user, token } = response.data;
 
-        setData({});
+      localStorage.setItem("@foodexplorer:user", JSON.stringify(user));
+      localStorage.setItem("@foodexplorer:token", token);
+
+      updateApiHeaders(token);
+      setData({ user, token });
+    });
+
+  const signOut = () => {
+    localStorage.removeItem("@foodexplorer:token");
+    localStorage.removeItem("@foodexplorer:user");
+    setData({});
+  };
+
+  const updateProfile = ({ user, avatarFile }) =>
+    executeLoading(async () => {
+      if (avatarFile) {
+        const fileUploadForm = new FormData();
+        fileUploadForm.append("avatar", avatarFile);
+
+        const response = await api.patch("/users/avatar", fileUploadForm);
+        user.avatar = response.data.avatar;
+      }
+
+      await api.put("/users", user);
+      localStorage.setItem("@foodexplorer:user", JSON.stringify(user));
+      setData({ user, token: data.token });
+      alert("Perfil atualizado com sucesso!");
+    });
+
+  useEffect(() => {
+    const token = localStorage.getItem("@foodexplorer:token");
+    const user = localStorage.getItem("@foodexplorer:user");
+
+    if (token && user) {
+      updateApiHeaders(token);
+      setData({ token, user: JSON.parse(user) });
     }
+  }, []);
 
-    async function updateProfile({ user, avatarFile }){
-        try {
-
-            if (avatarFile){
-                setLoading(true);
-                const fileUploadForm = new FormData();
-                fileUploadForm.append("avatar", avatarFile);
-
-                const response = await api.patch("/users/avatar", fileUploadForm);
-                user.avatar = response.data.avatar;
-            }
-
-            await api.put("/users", user);
-            localStorage.setItem("@foodexplorer:user", JSON.stringify(user));
-
-            setData({ user, token: data.token });
-            alert("Perfil atualizado com sucesso!");
-
-            setLoading(false);
-
-        } catch (error) {
-            if (error.response) {
-                alert(error.response.data.message);
-            } else {
-                alert("Não foi possível atualizar o perfil.");
-            }
-
-            setLoading(false);
-        }
-    }
-
-    useEffect(() => {
-        const token = localStorage.getItem("@foodexplorer:token");
-        const user = localStorage.getItem("@foodexplorer:user");
-
-        if (token && user) {
-            api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-
-            setData({
-                token,
-                user: JSON.parse(user)
-            });
-        }
-    }, []);
-
-    return (
-        <AuthContext.Provider value={{ 
-            signIn,
-            signOut,
-            loading,
-            setLoading,
-            updateProfile,
-            user: data.user,
-        }}>
-            {children}
-        </AuthContext.Provider>
-    )
+  return (
+    <AuthContext.Provider
+      value={{
+        signIn,
+        signOut,
+        loading,
+        updateProfile,
+        user: data.user,
+      }}
+    >
+      {children}
+    </AuthContext.Provider>
+  );
 }
 
 function useAuth() {
-    const context = useContext(AuthContext);
-
-    return context;
+  const context = useContext(AuthContext);
+  if (!context) {
+    throw new Error("useAuth must be used within an AuthProvider");
+  }
+  return context;
 }
 
 export { AuthProvider, useAuth };
