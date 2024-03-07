@@ -1,5 +1,5 @@
 // Styling Imports
-import { Container, Content, Form, Avatar, Infos, Logo } from "./styles";
+import { Container, Content, Form, Infos } from "./styles";
 
 // Theme Swap Imports
 import { ThemeProvider } from "styled-components";
@@ -21,17 +21,11 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 
 // Image Imports
-import {
-  FiUser,
-  FiMail,
-  FiLock,
-  FiCamera,
-  FiShoppingBag,
-  FiPlus,
-} from "react-icons/fi";
+import { FiUser, FiMail, FiLock, FiShoppingBag, FiPlus } from "react-icons/fi";
 import { BsWhatsapp } from "react-icons/bs";
 import avatarPlaceholder from "../../assets/avatar_placeholder.svg";
-import logo from "../../assets/logo.svg";
+
+import { PageError } from "../../components/PageError";
 
 export function Profile() {
   const [theme, toggleTheme] = useDarkMode();
