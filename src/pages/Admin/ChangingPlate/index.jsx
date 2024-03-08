@@ -1,7 +1,5 @@
-// Styling Imports
 import { Container, Content, Form, Image } from "./styles.js";
 
-// Theme Swap Imports
 import { ThemeProvider } from "styled-components";
 import { ThemeSlider } from "../../../components/ThemeSlider";
 import { useDarkMode } from "../../../styles/useDarkMode.js";
@@ -9,17 +7,16 @@ import GlobalStyles from "../../../styles/global";
 import lightTheme from "../../../styles/lightTheme.js";
 import darkTheme from "../../../styles/theme";
 
-// Components Imports
 import { Header } from "../../../components/Header";
 import { Footer } from "../../../components/Footer";
 import { Button } from "../../../components/Button";
 import { ButtonText } from "../../../components/ButtonText";
+import DeleteButtonAnimation from "../../../components/DeleteButtonAnimation";
 import { Input } from "../../../components/Input";
-import { IngredientsTag } from "../../../components/IngredientsTag";
 import { Textarea } from "../../../components/Textarea";
 import { PageError } from "../../../components/PageError";
+import { IngredientsTag } from "../../../components/IngredientsTag";
 
-// Strategic Imports (API and others)
 import { api } from "../../../services/api";
 import { useAuth } from "../../../hooks/auth";
 import { useState, useEffect } from "react";
@@ -27,7 +24,6 @@ import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 
-// Image Imports
 import { RiArrowLeftSLine } from "react-icons/ri";
 import { FiCamera } from "react-icons/fi";
 
@@ -51,7 +47,6 @@ export function ChangingPlate() {
 
   const [data, setData] = useState(null);
 
-  // Change Image Function
   const imageURL = data && `${api.defaults.baseURL}/files/${data.image}`;
   const [image, setImage] = useState();
   const [imageFile, setImageFile] = useState(null);
@@ -64,7 +59,6 @@ export function ChangingPlate() {
     setImage(imagePreview);
   }
 
-  // Add and Remove Ingredients Function
   function handleAddIngredient() {
     if (newIngredient.length < 3) {
       return alert(
@@ -82,7 +76,6 @@ export function ChangingPlate() {
     );
   }
 
-  // Update Dish Function
   async function handleUpdateDish() {
     if (!image) {
       return alert("Erro: Você não carregou a nova imagem do prato!");
@@ -156,7 +149,6 @@ export function ChangingPlate() {
     fetchDish();
   }, []);
 
-  // Remove Dish Function
   async function handleRemoveDish() {
     setLoadingDelete(true);
     const isConfirm = confirm("Tem certeza que deseja remover este item?");
@@ -292,7 +284,7 @@ export function ChangingPlate() {
             )}
 
             <div className="button">
-              <Button
+              <DeleteButtonAnimation
                 className="deleteButton"
                 title={loadingDelete ? "Excluindo prato" : "Excluir prato"}
                 onClick={handleRemoveDish}

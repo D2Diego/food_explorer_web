@@ -29,13 +29,17 @@ export const Content = styled.div`
     .button {
         display: flex;
         justify-content: center;
+        align-items: flex-end;
         margin-top: 3.2rem;
         gap: 2rem;
         white-space: nowrap;
+        width: auto;
     }
+
 
     .deleteButton {
         background: ${({ theme }) => theme.COLORS.RED};
+
     }
     
 
