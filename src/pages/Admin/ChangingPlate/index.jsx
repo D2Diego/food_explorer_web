@@ -3,25 +3,25 @@ import { Container, Content, Form, Image } from "./styles.js";
 
 // Theme Swap Imports
 import { ThemeProvider } from "styled-components";
-import { ThemeSlider } from "../../components/ThemeSlider";
-import { useDarkMode } from "../../styles/useDarkMode";
-import GlobalStyles from "../../styles/global";
-import lightTheme from "../../styles/lightTheme";
-import darkTheme from "../../styles/theme";
+import { ThemeSlider } from "../../../components/ThemeSlider";
+import { useDarkMode } from "../../../styles/useDarkMode.js";
+import GlobalStyles from "../../../styles/global";
+import lightTheme from "../../../styles/lightTheme.js";
+import darkTheme from "../../../styles/theme";
 
 // Components Imports
-import { Header } from "../../components/Header";
-import { Footer } from "../../components/Footer";
-import { Button } from "../../components/Button";
-import { ButtonText } from "../../components/ButtonText";
-import { Input } from "../../components/Input";
-import { IngredientsTag } from "../../components/IngredientsTag";
-import { Textarea } from "../../components/Textarea";
-import { PageError } from "../../components/PageError";
+import { Header } from "../../../components/Header";
+import { Footer } from "../../../components/Footer";
+import { Button } from "../../../components/Button";
+import { ButtonText } from "../../../components/ButtonText";
+import { Input } from "../../../components/Input";
+import { IngredientsTag } from "../../../components/IngredientsTag";
+import { Textarea } from "../../../components/Textarea";
+import { PageError } from "../../../components/PageError";
 
 // Strategic Imports (API and others)
-import { api } from "../../services/api";
-import { useAuth } from "../../hooks/auth";
+import { api } from "../../../services/api";
+import { useAuth } from "../../../hooks/auth";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";

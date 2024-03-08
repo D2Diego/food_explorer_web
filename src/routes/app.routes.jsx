@@ -1,8 +1,8 @@
 import { Routes, Route } from "react-router-dom";
 
 import { Home } from "../pages/Home";
-import { MakeDish } from "../pages/MakeDish";
-import { ChangingPlate } from "../pages/ChangingPlate";
+import { MakeDish } from "../pages/Admin/MakeDish";
+import { ChangingPlate } from "../pages/Admin/ChangingPlate";
 import { Profile } from "../pages/Profile";
 import { Details } from "../pages/Details";
 import { ShoppingCart } from "../pages/ShoppingCart";

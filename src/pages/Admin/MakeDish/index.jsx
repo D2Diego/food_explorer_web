@@ -3,25 +3,25 @@ import { Container, Content, Form } from "./styles.js";
 
 // Theme Swap Imports
 import { ThemeProvider } from "styled-components";
-import { ThemeSlider } from "../../components/ThemeSlider/index.jsx";
-import { useDarkMode } from "../../styles/useDarkMode.js";
-import GlobalStyles from "../../styles/global.js";
-import lightTheme from "../../styles/lightTheme.js";
-import darkTheme from "../../styles/theme.js";
+import { ThemeSlider } from "../../../components/ThemeSlider/index.jsx";
+import { useDarkMode } from "../../../styles/useDarkMode.js";
+import GlobalStyles from "../../../styles/global.js";
+import lightTheme from "../../../styles/lightTheme.js";
+import darkTheme from "../../../styles/theme.js";
 
 // Components Imports
-import { Header } from "../../components/Header/index.jsx";
-import { Footer } from "../../components/Footer/index.jsx";
-import { Button } from "../../components/Button/index.jsx";
-import { ButtonText } from "../../components/ButtonText/index.jsx";
-import { Input } from "../../components/Input/index.jsx";
-import { IngredientsTag } from "../../components/IngredientsTag/index.jsx";
-import { Textarea } from "../../components/Textarea/index.jsx";
-import { PageError } from "../../components/PageError/index.jsx";
+import { Header } from "../../../components/Header/index.jsx";
+import { Footer } from "../../../components/Footer/index.jsx";
+import { Button } from "../../../components/Button/index.jsx";
+import { ButtonText } from "../../../components/ButtonText/index.jsx";
+import { Input } from "../../../components/Input/index.jsx";
+import { IngredientsTag } from "../../../components/IngredientsTag/index.jsx";
+import { Textarea } from "../../../components/Textarea/index.jsx";
+import { PageError } from "../../../components/PageError/index.jsx";
 
 // Strategic Imports (API and others)
-import { api } from "../../services/api.js";
-import { useAuth } from "../../hooks/auth.jsx";
+import { api } from "../../../services/api.js";
+import { useAuth } from "../../../hooks/auth.jsx";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
