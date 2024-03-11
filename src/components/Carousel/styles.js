@@ -23,7 +23,6 @@ export const Content = styled.div`
     }
     
     .swiper-slide {
-        /* Center slide text vertically */
         display: -webkit-box;
         display: -ms-flexbox;
         display: -webkit-flex;
