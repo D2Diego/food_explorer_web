@@ -33,7 +33,6 @@ export const Content = styled.div`
     }
     
     .swiper-slide {
-        /* Center slide text vertically */
         display: -webkit-box;
         display: -ms-flexbox;
         display: -webkit-flex;
@@ -104,7 +103,6 @@ export const Banner = styled.div`
     img {
         width: 100%;
         margin-bottom: -2.7rem;
-        z-index: -1;
     }
 
     h1 {

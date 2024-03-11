@@ -20,7 +20,6 @@ export default createGlobalStyle`
         *::-webkit-scrollbar {
             width: 22px;
             height: 22px;
-            border-radius: 9999px;
         }
 
         *::-webkit-scrollbar-corner {

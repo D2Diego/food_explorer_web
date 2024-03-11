@@ -151,7 +151,7 @@ export const Button = styled.button`
     
     font-size: 1.4rem;
 
-    background-color: ${({ theme }) => theme.COLORS.RED};
+    background-color: ${({ theme }) => theme.COLORS.BACKGROUND_700};
     color: ${({ theme }) => theme.COLORS.WHITE};
 
     padding: 0 3rem;

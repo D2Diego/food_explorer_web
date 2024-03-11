@@ -3,20 +3,17 @@ import { ThemeProvider } from "styled-components";
 import GlobalStyles from "./global";
 import { useDarkMode } from "./useDarkMode";
 import lightTheme from "./lightTheme";
-import darkTheme from "./darkTheme";
-import { ThemeSlider } from "../components/ThemeSlider";
+import darkTheme from "./theme";
 
-const Layout = ({ children }) => {
+const Layout = ({ children, renderThemeSlider }) => {
   const [theme, toggleTheme] = useDarkMode();
   const themeMode = theme === "lightTheme" ? lightTheme : darkTheme;
 
   return (
     <ThemeProvider theme={themeMode}>
       <GlobalStyles />
-      <Header />
-      <ThemeSlider theme={theme} toggleTheme={toggleTheme} />
+      {renderThemeSlider ? renderThemeSlider({ theme, toggleTheme }) : null}
       {children}
-      <Footer />
     </ThemeProvider>
   );
 };

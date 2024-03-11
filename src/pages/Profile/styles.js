@@ -3,11 +3,11 @@ import styled from "styled-components";
 export const Container = styled.div`
     display: flex;
     flex-direction: column;
-    
     width: 100%;
     min-width: 32rem;
     height: 100vh;
-    
+    background-color: ${({ theme }) => theme.COLORS.BACKGROUND_900};
+
     overflow: auto;
     overflow: overlay; 
 `;
@@ -173,7 +173,7 @@ export const Infos = styled.div`
         border-radius: 0.5rem;
         
         color: ${({ theme }) => theme.COLORS.WHITE};
-        background-color: ${({ theme }) => theme.COLORS.BLUE};
+        background-color: ${({ theme }) => theme.COLORS.BACKGROUND_700};
         
         margin-bottom: 3rem;
         gap: 1.2rem;
